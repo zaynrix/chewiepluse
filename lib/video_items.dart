@@ -90,7 +90,6 @@ class _VideoItemsState extends State<VideoItems> {
         Positioned(
           bottom: 10,
           right: 10,
-          // alignment: Alignment.bottomRight,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
