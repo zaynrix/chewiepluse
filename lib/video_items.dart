@@ -28,7 +28,7 @@ class _VideoItemsState extends State<VideoItems> {
 
     // Initialized Controller and Arguments
     _chewieController = ChewieController(
-      allowFullScreen: true,
+      // allowFullScreen: true,
 
       // Video : assets-network-files
       videoPlayerController: widget.videoPlayerController,
@@ -45,7 +45,7 @@ class _VideoItemsState extends State<VideoItems> {
           backgroundColor: Colors.red,
           bufferedColor: Colors.red,
           handleColor: Colors.red),
-      autoInitialize: true,
+      // autoInitialize: true,
       autoPlay: widget.autoplay!,
       looping: widget.looping!,
       // Error Builder
