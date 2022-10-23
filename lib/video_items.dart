@@ -27,49 +27,53 @@ class _VideoItemsState extends State<VideoItems> {
     super.initState();
 
     // Initialized Controller and Arguments
-    _chewieController = ChewieController(
-      // allowFullScreen: true,
-      showOptions: true,
-      showControlsOnInitialize: true,
-      // Video : assets-network-files
-      videoPlayerController: widget.videoPlayerController,
-      showControls: false,
-      // aspectRatio: MediaQuery.of(context).size.width /
-      //     MediaQuery.of(context).size.height,
-      cupertinoProgressColors: ChewieProgressColors(
-          playedColor: Colors.red,
-          backgroundColor: Colors.red,
-          bufferedColor: Colors.red,
-          handleColor: Colors.red),
-      materialProgressColors: ChewieProgressColors(
-          playedColor: Colors.red,
-          backgroundColor: Colors.red,
-          bufferedColor: Colors.red,
-          handleColor: Colors.red),
-      // autoInitialize: true,
-      autoPlay: widget.autoplay!,
-      looping: widget.looping!,
-      // Error Builder
-      placeholder: const Center(
-          child: CircularProgressIndicator(
-        color: Colors.red,
-      )),
-      errorBuilder: (context, errorMessage) {
-        return Center(
-          child: Text(
-            errorMessage,
-            style: const TextStyle(color: Colors.white),
-          ),
-        );
-      },
-    );
+    setState(() {
+      _chewieController = ChewieController(
+        allowFullScreen: true,
+        showOptions: true,
+        // aspectRatio: MediaQuery.of(context).size.width/ MediaQuery.of(context).size.height,
+
+        showControlsOnInitialize: true,
+        // Video : assets-network-files
+        videoPlayerController: widget.videoPlayerController,
+        showControls: false,
+        cupertinoProgressColors: ChewieProgressColors(
+            playedColor: Colors.red,
+            backgroundColor: Colors.red,
+            bufferedColor: Colors.red,
+            handleColor: Colors.red),
+        materialProgressColors: ChewieProgressColors(
+            playedColor: Colors.red,
+            backgroundColor: Colors.red,
+            bufferedColor: Colors.red,
+            handleColor: Colors.red),
+        autoInitialize: true,
+        autoPlay: widget.autoplay!,
+        looping: widget.looping!,
+        // Error Builder
+        placeholder: const Center(
+            child: CircularProgressIndicator(
+          color: Colors.red,
+        )),
+        errorBuilder: (context, errorMessage) {
+          return Center(
+            child: Text(
+              errorMessage,
+              style: const TextStyle(color: Colors.white),
+            ),
+          );
+        },
+      );
+    });
   }
+  bool favourite = false;
+  bool special = false;
 
   // Dispose Controller
   @override
   void dispose() {
-    super.dispose();
     _chewieController.dispose();
+    super.dispose();
   }
 
   @override
@@ -77,7 +81,8 @@ class _VideoItemsState extends State<VideoItems> {
     return Stack(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height,
+          height: double.infinity,
+          width: double.infinity,
           child: Chewie(
             controller: _chewieController,
           ),
@@ -92,10 +97,14 @@ class _VideoItemsState extends State<VideoItems> {
             mainAxisSize: MainAxisSize.max,
             children: [
               IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
+                  onPressed: () {
+                    setState(() {
+                      favourite =!favourite;
+                    });
+                  },
+                  icon:  Icon(
                     Icons.favorite,
-                    color: Colors.white,
+                    color:favourite==true? Colors.red:Colors.white,
                     size: 36,
                   )),
               const Text(
@@ -120,10 +129,14 @@ class _VideoItemsState extends State<VideoItems> {
                 height: 30,
               ),
               IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
+                  onPressed: () {
+                    setState(() {
+                      special=!special;
+                    });
+                  },
+                  icon: Icon(
                     Icons.assistant_photo_rounded,
-                    color: Colors.white,
+                    color:special==true? Colors.yellow:Colors.white,
                     size: 36,
                   )),
               const Text(

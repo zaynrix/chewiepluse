@@ -15,7 +15,14 @@ class Home extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final List<String> links = [
     'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1204-large.mp4',
     'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1205-large.mp4',
@@ -27,7 +34,7 @@ class HomeScreen extends StatelessWidget {
     'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1210-large.mp4'
   ];
 
-  HomeScreen({Key? key}) : super(key: key);
+  bool selected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -56,23 +63,64 @@ class HomeScreen extends StatelessWidget {
             child: AppBar(
               elevation: 0,
               backgroundColor: Colors.transparent,
-              title:  Center(
+              title: Center(
                 child: Row(
-
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    TextButton(
-                      child:const Text(
-                        "Following",
-                        style: TextStyle(color: Colors.white,fontSize: 20),
-                      ),
-                      onPressed: (){},
-                    ), TextButton(
-                      child:const Text(
-                        "For You",
-                        style: TextStyle(color: Colors.white,fontSize: 20),
-                      ),
-                      onPressed: (){},
+                    Column(
+                      children: [
+                        TextButton(
+                          child: Text(
+                            "Following",
+                            style: TextStyle(
+                                color: selected == true
+                                    ? Colors.white
+                                    : Colors.white54,
+                                fontSize: 20,
+                                fontWeight: selected == true
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              selected = !selected;
+                            });
+                          },
+                        ),
+                        selected == true
+                            ? Container(
+                                color: Colors.white,
+                                width: 30,
+                                height: 5,
+                              )
+                            : SizedBox()
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        TextButton(
+                          child: Text(
+                            "For You",
+                            style: TextStyle(
+                                color: selected != true
+                                    ? Colors.white
+                                    : Colors.white54,
+                                fontSize: 20),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              selected = !selected;
+                            });
+                          },
+                        ),
+                        selected != true
+                            ? Container(
+                                color: Colors.white,
+                                width: 30,
+                                height: 5,
+                              )
+                            : SizedBox()
+                      ],
                     ),
                   ],
                 ),
