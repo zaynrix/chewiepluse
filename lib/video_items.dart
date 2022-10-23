@@ -29,7 +29,8 @@ class _VideoItemsState extends State<VideoItems> {
     // Initialized Controller and Arguments
     _chewieController = ChewieController(
       // allowFullScreen: true,
-
+      showOptions: true,
+      showControlsOnInitialize: true,
       // Video : assets-network-files
       videoPlayerController: widget.videoPlayerController,
       showControls: false,
