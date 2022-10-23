@@ -33,7 +33,6 @@ class _VideoItemsState extends State<VideoItems> {
       // Video : assets-network-files
       videoPlayerController: widget.videoPlayerController,
       showControls: false,
-      isLive: true,
 
       cupertinoProgressColors: ChewieProgressColors(
           playedColor: Colors.red,
