@@ -35,7 +35,6 @@ class _VideoItemsState extends State<VideoItems> {
       showControls: false,
       // aspectRatio: MediaQuery.of(context).size.width /
       //     MediaQuery.of(context).size.height,
-
       cupertinoProgressColors: ChewieProgressColors(
           playedColor: Colors.red,
           backgroundColor: Colors.red,
